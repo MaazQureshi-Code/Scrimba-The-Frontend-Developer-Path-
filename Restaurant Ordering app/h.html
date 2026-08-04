@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Restaurant Ordering App</title>
+</head>
+<body>
+    <header>
+        <h1>Maaz Diner</h1>
+        <span>The best Burgers and pizza in the town</span>
+    </header>
+    <main>
+        <section class="menu">
+            <article class="menu-item">
+                <img src="./images.jpg" alt="Pizza">
+                <div class="menu-content">
+                    <h2>Pizza</h2>
+                    <p>Pepperoni, mushroom, mozzarella</p>
+                    <span>$14</span>
+                </div>
+                <button class="add-btn" type="button" aria-label="Add Pizza">
+                    +
+                </button>
+            </article>
+            <article class="menu-item">
+                <img src="images/beer.png" alt="Beer">
+                <div class="menu-content">
+                    <h2>Beer</h2>
+                    <p>Grain, hops, yeast, water</p>
+                    <span>$12</span>
+                </div>
+                <button class="add-btn" type="button" aria-label="Add Beer">
+                    +
+                </button>
+            </article>
+        </section>
+        
+        <section class="order">
+            <h2>Your order</h2>
+            <div class="order-items">
+                <article class="order-item">
+                    <div class="order-info">
+                        <h3>Pizza</h3>
+                        <button type="button">Remove</button>
+                    </div>
+        
+                    <p>$14</p>
+                </article>
+        
+                <article class="order-item">
+                    <div class="order-info">
+                        <h3>Beer</h3>
+                        <button type="button">Remove</button>
+                    </div>
+        
+                    <p>$12</p>
+                </article>
+            </div>
+
+            <hr>
+            <div class="order-total">
+                <h3>Total price:</h3>
+                <p>$26</p>
+            </div>
+        
+            <button class="complete-order" type="button">
+                Complete order
+            </button>
+        </section>
+    </main>
+    
+</body>
+</html>
