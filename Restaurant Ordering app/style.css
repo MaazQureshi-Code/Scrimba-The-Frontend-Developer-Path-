@@ -96,6 +96,7 @@ header span {
 .order{
     max-width: 500px;
     margin: 40px auto;
+    display: none;
 }
 .order h2 {
     text-align: center;
@@ -157,4 +158,57 @@ header span {
 
 .complete-order:hover {
     background: #15803d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.card-details {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.card-details form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    width: 100%;
+    max-width: 350px;
+    padding: 25px;
+
+    border: 1px solid #888;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.card-details input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.complete-order {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.complete-order:hover {
+    background-color: #1d4ed8;
 }
