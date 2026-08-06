@@ -1,68 +1,86 @@
-
 * {
     box-sizing: border-box;
 }
 
-body{
-    margin: 0px;
-    padding: 0px;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Header */
 
-
-
-
-header{
-    background: linear-gradient(rgba(0,0,0,0.4),rgba(0, 0, 0,0.3)),url("./amirali-mirhashemian-sc5sTPMrVfk-unsplash.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+header {
     width: 100%;
+    max-width: 740px;
     min-height: 250px;
-    border-radius: 5px;
+    margin: 0 auto;
+    padding: 30px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: antiquewhite;
-    padding: 0 0px 2px 30px;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.35)
+        ),
+        url("./amirali-mirhashemian-sc5sTPMrVfk-unsplash.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 5px 5px 0 0;
     color: #fff;
 }
-header h1{
+
+header h1 {
     margin: 0;
     font-size: 2.5rem;
     font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, .6);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
+
 header span {
-    margin-top: -2px;
+    margin-top: 5px;
     font-size: 1rem;
     font-weight: 500;
-    text-shadow: 2px 2px 8px rgba(0,0,0,.6);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
-.menu{
+
+/* Menu */
+
+.menu {
+    width: 100%;
     max-width: 740px;
     margin: 0 auto;
+    background-color: #fff;
 }
-.menu-item{
+
+.menu-item {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 20px 0px;
-    border: 1px solid black;
+
+    padding: 20px 12px;
+    border-bottom: 1px solid #d1d5db;
 }
 
 .menu-item img {
     width: 80px;
     height: 80px;
-    object-fit: contain;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 .menu-content {
     flex: 1;
 }
-
 
 .menu-content h2 {
     margin: 0;
@@ -71,43 +89,68 @@ header span {
 
 .menu-content p {
     margin: 8px 0;
-    color: #777;
+    color: #6b7280;
 }
 
 .menu-content span {
-    font-weight: bold;
     font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .add-btn {
     width: 50px;
     height: 50px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d1d5db;
     border-radius: 50%;
-    border: 1px solid #ccc;
-    background: white;
+    background-color: #fff;
+
     font-size: 1.8rem;
     cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .add-btn:hover {
-    background: #f5f5f5;
+    background-color: #f3f4f6;
+    transform: scale(1.05);
 }
 
-.order{
+/* Order section */
+
+.order {
+    width: 100%;
     max-width: 500px;
     margin: 40px auto;
+    padding: 0 20px;
     display: none;
+   
 }
+
 .order h2 {
+    margin: 0 0 30px;
     text-align: center;
-    margin-bottom: 30px;
 }
+
+#order-list {
+    border-bottom: 1px solid #9ca3af;
+}
+
 .order-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
     padding: 12px 0;
 }
+
 .order-info {
     display: flex;
     align-items: center;
@@ -119,23 +162,31 @@ header span {
     margin: 0;
     font-size: 1.2rem;
 }
-.order-item button{
-    background: none;
+
+.order-item button {
+    padding: 0;
     border: none;
-    color: #777;
-    cursor: pointer;
+    background: none;
+    color: #6b7280;
     font-size: 0.9rem;
+    cursor: pointer;
 }
+
+.order-item button:hover {
+    color: #dc2626;
+}
+
 .order-item p {
     margin: 0;
     font-weight: bold;
 }
 
-.order-total{
+.order-total {
     display: flex;
-    justify-content: space-between;
-    padding: 20px 0px;
     align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 0;
 }
 
 .order-total h3,
@@ -143,26 +194,55 @@ header span {
     margin: 0;
 }
 
+/* Shared button style */
+
 .complete-order {
-    display: no;
     width: 100%;
-    padding: 16px;
+    padding: 14px;
+
     border: none;
     border-radius: 6px;
-    background: #16a34a;
-    color: white;
+    background-color: #2563eb;
+    color: #fff;
+
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.complete-order-btn{
+      width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: #fff;
+
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
 }
 
 .complete-order:hover {
-    background: #15803d;
+    background-color: #1d4ed8;
 }
 
-* {
-    box-sizing: border-box;
+/* Hide only the order button when the order is empty */
+
+.order > .complete-order {
+    display: none;
 }
+
+/* Add this class with JavaScript when an item is added */
+
+.order > .complete-order.show {
+    display: block;
+}
+
+/* Payment modal */
 
 .card-details {
     position: fixed;
@@ -170,45 +250,89 @@ header span {
     z-index: 9999;
 
     display: none;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Add the open class to show the modal */
+
+.card-details.open {
+    display: flex;
 }
 
 .card-details form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
     width: 100%;
     max-width: 350px;
     padding: 25px;
 
-    border: 1px solid #888;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
     border-radius: 10px;
     background-color: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .card-details input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #aaa;
+
+    border: 1px solid #9ca3af;
     border-radius: 5px;
-    font-size: 16px;
+
+    font-size: 1rem;
+    outline: none;
 }
 
-.complete-order {
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+.card-details input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.complete-order:hover {
-    background-color: #1d4ed8;
+/* Keep the modal submit button visible */
+
+.card-details .complete-order {
+    display: block;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    header {
+        min-height: 200px;
+        padding: 24px 20px;
+        border-radius: 0;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .menu-item {
+        gap: 12px;
+        padding: 16px 12px;
+    }
+
+    .menu-item img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .menu-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .add-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+
+    .order {
+        margin-top: 30px;
+    }
 }
