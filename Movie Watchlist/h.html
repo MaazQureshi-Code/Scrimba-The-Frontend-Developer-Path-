@@ -3,10 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        />
     <title>Movie Watch list</title>
 </head>
 <body>
-    
-    
+    <header>
+        <div id="container">
+        <div id="title">
+            <h1>Find your film</h1>
+            <nav>
+            <ul>
+                <li><a href="">My Watchlist</a></li>
+            </ul>
+            </nav>
+        </div>
+            <div id="search">
+                <label for="userInput">🔍</label>
+                <input type="text" name="userInput" id="userInput" placeholder="Search for a movie">
+                <button class="btn">Search</button>
+            </div>
+            <p id="error-message"></p>
+        </div>
+    </header>
+
+    <main>
+<div class="movie-card">
+    <img 
+        class="movie-poster"
+        src="./blade-runner.jpg"
+        alt="Blade Runner poster"
+    >
+    <div class="movie-info">
+        <div class="movie-title-row">
+            <h2>Blade Runner</h2>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <span>8.1</span>
+            </div>
+        </div>
+        <div class="movie-details">
+            <span>117 min</span>
+            <span>Action, Drama, Sci-fi</span>
+            <button class="watchlist-btn">
+                <i class="fa-solid fa-circle-plus"></i>
+                Watchlist
+            </button>
+        </div>
+        <p class="movie-description">
+            A blade runner must pursue and terminate four
+            replicants who stole a ship in space, and have
+            returned to Earth to find their creator.
+        </p>
+    </div>
+</div>
+        <div class="explore">
+        <i class="fa-solid fa-film"></i>
+        <p>Start exploring</p>
+        </div>
+        
+    </main>
+    <script src="./index.js"></script>
 </body>
 </html>
