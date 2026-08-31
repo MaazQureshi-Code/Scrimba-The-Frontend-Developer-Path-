@@ -409,7 +409,7 @@ a:focus-visible {
 
 /* ---------- MOBILE ---------- */
 
-@media (max-width: 767px) {
+@media (max-width: 765px) {
     header {
         min-height: auto;
         padding: 4rem 0;
