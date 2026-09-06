@@ -1,75 +1,216 @@
 import { useState, useRef, useEffect } from "react"
-import Die from "./Die"
-import { nanoid } from "nanoid"
-import Confetti from "react-confetti"
-import './App.css'
+import "./App.css"
+import clsx from "clsx"
 
 export default function App() {
-    const [dice, setDice] = useState(() => generateAllNewDice())
-    const buttonRef = useRef(null)
 
-    const gameWon = dice.every(die => die.isHeld) &&
-        dice.every(die => die.value === dice[0].value)
-        
+    const [selectedAnswers, setSelectedAnswers] = useState([])
+    const [score, setScore] = useState(0)
+    const [startQ, setStartQ] = useState(false)
+    const [checked, setChecked] = useState(false)
+    const [questions, setQuestions] = useState([])
+
+    const hasFetched = useRef(false)
+
+
+    // Check if every question has an answer
+    const allAnswered =
+        questions.length > 0 &&
+        questions.every((item, index) => {
+            return selectedAnswers[index] !== undefined
+        })
+
+
+    function handleHome() {
+        setStartQ(true)
+    }
+
+
+    function handleSelect(index, answer) {
+        setSelectedAnswers(prev => {
+            const newAnswers = [...prev]
+
+            newAnswers[index] = answer
+
+            return newAnswers
+        })
+    }
+
+
+    // GET QUESTIONS FROM API
+    async function getData() {
+        try {
+            const res = await fetch(
+                "https://opentdb.com/api.php?amount=5"
+            )
+
+            if (!res.ok) {
+                throw new Error(`HTTP error: ${res.status}`)
+            }
+
+            const data = await res.json()
+
+            setQuestions(data.results)
+
+        } catch (error) {
+            console.error("Could not get questions:", error)
+        }
+    }
+    console.log(questions)
     useEffect(() => {
-        if (gameWon) {
-            buttonRef.current.focus()
+
+        // prevents React StrictMode from fetching twice in development
+        if (hasFetched.current) {
+            return
         }
-    }, [gameWon])
 
-    function generateAllNewDice() {
-        return new Array(10)
-            .fill(0)
-            .map(() => ({
-                value: Math.ceil(Math.random() * 6),
-                isHeld: false,
-                id: nanoid()
-            }))
-    }
-    
-    function rollDice() {
-        if (!gameWon) {
-            setDice(oldDice => oldDice.map(die =>
-                die.isHeld ?
-                    die :
-                    { ...die, value: Math.ceil(Math.random() * 6) }
-            ))
-        } else {
-            setDice(generateAllNewDice())
-        }
+        hasFetched.current = true
+
+        getData()
+
+    }, [checked])
+
+
+    function handleAnswer() {
+
+        const correctAnswers = questions.filter((item, index) => {
+            return selectedAnswers[index] === item.correct_answer
+        })
+
+        setScore(correctAnswers.length)
+        setChecked(true)
     }
 
-    function hold(id) {
-        setDice(oldDice => oldDice.map(die =>
-            die.id === id ?
-                { ...die, isHeld: !die.isHeld } :
-                die
-        ))
+
+    function reset() {
+        setSelectedAnswers([])
+        setScore(0)
+        setChecked(false)
+
+        // get 5 new questions
+        getData()
     }
 
-    const diceElements = dice.map(dieObj => (
-        <Die
-            key={dieObj.id}
-            value={dieObj.value}
-            isHeld={dieObj.isHeld}
-            hold={() => hold(dieObj.id)}
-        />
-    ))
+
+    const information = questions.map((item, index) => {
+
+        const answers = [
+            item.correct_answer,
+            ...item.incorrect_answers
+        ]
+
+        return (
+            <div key={index}>
+
+                <p>{item.question}</p>
+
+                <div className="answerbtn">
+
+                    {answers.map((answer, answerIndex) => {
+
+                        const isSelected =
+                            selectedAnswers[index] === answer
+
+                        const isCorrectAnswer =
+                            answer === item.correct_answer
+
+                        const isCorrect =
+                            checked && isCorrectAnswer
+
+                        const isWrong =
+                            checked &&
+                            isSelected &&
+                            !isCorrectAnswer
+
+                        const isFaded =
+                            checked &&
+                            !isCorrectAnswer &&
+                            !isWrong
+
+                        return (
+                            <button
+                                key={answerIndex}
+                                onClick={() =>
+                                    handleSelect(index, answer)
+                                }
+                                className={clsx("btn", {
+                                    selected: isSelected && !checked,
+                                    correct: isCorrect,
+                                    wrong: isWrong,
+                                    faded: isFaded
+                                })}
+                                disabled={checked}
+                            >
+                                {answer}
+                            </button>
+                        )
+                    })}
+
+                </div>
+
+            </div>
+        )
+    })
+
 
     return (
-        <main>
-            {gameWon && <Confetti />}
-            <div aria-live="polite" className="sr-only">
-                {gameWon && <p>Congratulations! You won! Press "New Game" to start again.</p>}
-            </div>
-            <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-            <div className="dice-container">
-                {diceElements}
-            </div>
-            <button ref={buttonRef} className="roll-dice" onClick={rollDice}>
-                {gameWon ? "New Game" : "Roll"}
-            </button>
-        </main>
+        <div className="app">
+
+            {!startQ ? (
+
+                <div id="Homepage">
+
+                    <h1>Quizzical</h1>
+
+                    <p>Some description if needed</p>
+
+                    <button onClick={handleHome}>
+                        Start quiz
+                    </button>
+
+                </div>
+
+            ) : (
+
+                <main>
+
+                    <div className="check-answer">
+
+                        {information}
+
+
+                        {checked && (
+                            <p>
+                                You scored {score}/{questions.length} correct answers
+                            </p>
+                        )}
+
+
+                        {!checked && (
+                            <button
+                                className="btn"
+                                onClick={handleAnswer}
+                                disabled={!allAnswered}
+                            >
+                                Check answer
+                            </button>
+                        )}
+
+
+                        {checked && (
+                            <button
+                                className="btn"
+                                onClick={reset}
+                            >
+                                Play again
+                            </button>
+                        )}
+
+                    </div>
+
+                </main>
+            )}
+
+        </div>
     )
 }
