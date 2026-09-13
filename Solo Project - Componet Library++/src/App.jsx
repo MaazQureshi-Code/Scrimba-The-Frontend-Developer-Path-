@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Badges from "./components/Badges/badges";
 import Banners from "./components/Banners/Banners";
+import Card from "./components/Cards/Cards"
+import Testimonial from "./components/testimonials/testimonial"
 import './App.css';
-
 export default function App() {
   return (
     <main>
@@ -35,6 +36,9 @@ export default function App() {
           You won nice bro
         </Banners>
       */}
+
+      
+
     </main>
   );
 }
