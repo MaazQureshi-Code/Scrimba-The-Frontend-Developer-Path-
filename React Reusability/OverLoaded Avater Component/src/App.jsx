@@ -1,18 +1,17 @@
-import { useState } from 'react'
-import Header from "./components/header"
-import Main from "./components/main"
-import './App.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import Avatar from "./Avatar"
 
 function App() {
-
-
   return (
     <>
-      <Header />
-      <Main />
-      
+      <Avatar src="./images/bob.jpg" alt="Bob Ziroll" />
+      <br />
+      <Avatar>BZ</Avatar>
+      <br />
+      <Avatar />
     </>
   )
 }
 
-export default App
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
