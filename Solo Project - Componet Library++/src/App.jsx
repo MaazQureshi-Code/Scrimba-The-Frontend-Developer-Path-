@@ -1,14 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Badges from "./components/Badges/badges";
-import Banners from "./components/Banners/Banners";
-import Card from "./components/Cards/Cards"
 import Testimonial from "./components/testimonials/testimonial"
+import Card from "./components/Cards/Cards"
 import './App.css';
+import img1 from "./bob.jpg"
 export default function App() {
   return (
     <main>
-
       {/*
         Badge usage:
         - shape: "square" or "pill"
@@ -37,10 +33,9 @@ export default function App() {
         </Banners>
       */}
 
-      
+        <Testimonial image={img1}/>
+        <Card  />
 
     </main>
   );
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);

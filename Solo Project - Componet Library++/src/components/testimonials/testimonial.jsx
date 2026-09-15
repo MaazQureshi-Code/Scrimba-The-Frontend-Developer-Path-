@@ -1,46 +1,69 @@
 export default function Testimonial({
     image,
-    quote = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed urna nulla vitae laoreet augue. Amet feugiat est integer dolor auctor adipiscing nunc urna, sit.",
+    quote = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.",
     name = "May Anderson",
     location = "Workcation, CTO"
 }) {
-    return (
-        <section className="testimonial">
 
-            <div className="testimonial-image-wrapper">
-                <img
-                    src={image}
-                    alt={name}
-                    className="testimonial-image"
-                />
+    // VERSION WITH IMAGE
+    if (image) {
+        return (
+            <section className="testimonial with-image">
+
+                <div className="testimonial-image-wrapper">
+                    <img
+                        src={image}
+                        alt={name}
+                        className="testimonial-image"
+                    />
+                </div>
+
+                <div className="testimonial-content">
+
+                    <div className="testimonial-avatars">
+                        Bob
+                    </div>
+
+                    <div className="testimonial-quote-mark">“</div>
+
+                    <p className="testimonial-quote">
+                        {quote}
+                    </p>
+
+                    <div className="testimonial-person">
+                        <p className="testimonial-name">{name}</p>
+                        <p className="testimonial-location">{location}</p>
+                    </div>
+
+                </div>
+            </section>
+        )
+    }
+
+
+    // VERSION WITHOUT IMAGE
+    return (
+        <section className="testimonial-no-image">
+
+            <div className="testimonial-logo">
+                <span>⚖</span>
+                <strong>Workcation</strong>
             </div>
 
-            <div className="testimonial-content">
+            <p className="testimonial-no-image-quote">
+                “{quote}”
+            </p>
 
-                <div className="testimonial-avatars">
-                    <span>👩</span>
-                    <span>👨</span>
-                    <span className="testimonial-avatar-yellow">K</span>
-                </div>
+            <div className="testimonial-no-image-person">
+                <span className="testimonial-no-image-name">
+                    {name}
+                </span>
 
-                <div className="testimonial-quote-mark">
-                    “
-                </div>
+                <span className="testimonial-divider">/</span>
 
-                <p className="testimonial-quote">
-                    {quote}
-                </p>
-
-                <div className="testimonial-person">
-                    <p className="testimonial-name">
-                        {name}
-                    </p>
-
-                    <p className="testimonial-location">
-                        {location}
-                    </p>
-                </div>
-
+                <span className="testimonial-no-image-location">
+                    {location}
+                </span>
             </div>
 
         </section>
