@@ -31,7 +31,7 @@ body {
 
 .hero {
     width: 100%;
-    min-height: 350px;
+    min-height: 360px;
 
     background-image: url("./kabul.jpg");
     background-size: cover;
